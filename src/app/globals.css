@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme  {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-foreground-light : oklch(70.4% 0.04 256.788);
+  --font-plexMono: var(--font-plexMono);
+  --font-plexSans: var(--font-plexSans);
+  --shadow-primary : 0px 2px 3px -1px rgba(0,0,0,0.1),0px 1px 0px 0px rgba(25,28,33,0.02),0px 0px 0px 1px rgba(25,28,33,0.08);
+  --shadow-secondary: 0 3px 5px rgb(0,0,0,0.2);
+}
+
+/* @media (prefers-color-scheme: light) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
