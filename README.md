@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+---
 
-First, run the development server:
+# 📸 ReformPix — Drag. Drop. Done.
+
+Welcome to **ReformPix** — your all-in-one, no-nonsense tool for converting images 🖼️, PDFs 📄, and more... right in your browser.  
+No logins. No clutter. Just drag, drop, and let the magic happen ✨
+
+---
+
+## ⚡ Features
+
+- 🖼️ **Image to PDF** — Combine multiple images into a clean, compact PDF.  
+- 🔄 **PDF to Images** — Split a PDF into high-quality images.  
+- 🪄 **Resize Images** — Shrink or expand without losing quality.  
+- 🧙‍♂️ **Convert Image Format** — JPG → PNG → WebP → You name it.  
+- 🖋️ **Add Signature** — Upload or draw your signature like a boss 🖊️  
+- ✏️ **Add Text to PDFs** — Annotate PDFs with quick notes or labels.  
+- 💧 **Watermark PDFs** — Mark your territory with custom text/image watermarks.  
+
+---
+
+## 🧠 Why ReformPix?
+
+Because...  
+- You’re tired of bloated online tools full of ads 😤  
+- You want privacy — nothing leaves your browser 🕵️  
+- You need *speed*, *simplicity*, and *style* 🚀  
+
+---
+
+## 🧪 Tech Stack
+
+- 🧬 Next.js (App Router)  
+- 💅 Tailwind CSS  
+- 🎨 No SadCn UI  
+- 💽 TypeScript 
+- 📦 Bun 
+- 🎞️ Motion for subtle swooshy animations  
+
+---
+
+## 🚧 Work in Progress
+
+Still cooking 👨‍🍳  
+Here’s what’s brewing:  
+- 🧠 AI-powered compression & optimization  
+- 📂 Batch processing with preview  
+- 📱 Mobile-first perfection  
+
+---
+
+## 🛠️ Getting Started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+git clone https://github.com/kakotyanimesh/ReformPix
+cd ReformPix
+bun install
 bun dev
+
+⚠️ Requires Bun — install it from https://bun.sh
 ```
+💬 Feedback
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Have an idea? Found a bug?
+Open an issue or start a discussion here:
+👉 https://github.com/kakotyanimesh/ReformPix/issues
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Your feedback helps shape the tool. Even if you just say “fix this shit” — it counts. 💌
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+👨‍🎨 Made by
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Animesh Kakoty
+→ https://github.com/kakotyanimesh
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
