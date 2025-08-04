@@ -2,7 +2,7 @@ import { Accordian, AccordianProps } from "./ui/accordian";
 
 export const Policy = () => {
     return (
-        <div className="md:space-y-5 space-y-12 md:mx-auto mx-10">
+        <div className="md:space-y-5 space-y-12 md:mx-auto mx-10 w-[80vw] md:w-auto">
             <h1 className="font-semibold md:text-2xl text-md">Frequently Asked Questions</h1>
             <div className="space-y-4">
                 {FAQs.map((faq, key) => (

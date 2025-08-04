@@ -24,12 +24,12 @@ export const Accordian = (props: AccordianProps) => {
                     viewBox='0 0 24 24'
                     strokeWidth='1.5'
                     stroke='currentColor'
-                    className='size-4'>
+                    className='size-3'>
                     <path
                         strokeLinecap='round'
                         strokeLinejoin='round'
                         d={
-                            isHovered
+                            !isHovered
                                 ? "m19.5 8.25-7.5 7.5-7.5-7.5"
                                 : "m4.5 15.75 7.5-7.5 7.5 7.5"
                         }

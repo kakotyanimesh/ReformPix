@@ -1,16 +1,16 @@
-import { FileUploader } from "@/components/ui/fileUploader";
+"use client"
+
+import { ImageToPdfClient } from "@/components/imagetopdf";
+import { FeatureHomeDiv } from "@/components/ui/featureHomediv";
 
 export default function ImageToPdf() {
     return (
-        <div className="space-y-10">
-            <div className="space-y-3">
-                <h1 className="text-3xl font-semibold">Convert Image to PDF</h1>
-                <p className="text-sm text-foreground-light">
-                    Upload your images and we&apos;ll combine them into a single
-                    PDF document
-                </p>
-            </div>
-            <FileUploader filetype="image"/>
+        <div className='space-y-10'>
+            <FeatureHomeDiv
+                heading='Convert Images to PDF'
+                desc="Upload your images and we'll combine them into a single PDF document"
+            />
+            <ImageToPdfClient />
         </div>
     );
 }

@@ -1,15 +1,19 @@
 import { create } from "zustand";
 
-export type FileTypes = "image" | "pdf";
+export type FileTypes = "image/*" | "application/pdf";
 
 type FileStoreType = {
-    file: File | null;
-    setFile: (f: File) => void;
+    files: File[] | null;
+    setFiles: (f: File[]) => void;
+    removeFile : (index : number) => void
     reset: () => void;
 };
 
-export const useFileStore = create<FileStoreType>((set) => ({
-    file: null,
-    setFile: (f) => set({ file: f }),
-    reset: () => set({ file: null }),
+export const useFileStore = create<FileStoreType>((set, get) => ({
+    files: [],
+    setFiles: (f) => set({ files: f }),
+    reset: () => set({ files: null }),
+    removeFile : (index) => set({
+        files : get().files?.filter((_, i) => i !== index)
+    })
 }));

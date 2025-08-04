@@ -3,16 +3,24 @@ import { motion } from "motion/react";
 import { Button } from "./button";
 import { useRef } from "react";
 import { FileTypes, useFileStore } from "@/lib/store/file.store";
+import { Upload } from "./icons/upload";
 
-export const FileUploader = (props: { filetype: FileTypes }) => {
+const fileTypeLable: Record<FileTypes, string> = {
+    "application/pdf": "PDF",
+    "image/*": "Image",
+};
+
+export const FileUploader = (props: { filetype: FileTypes, isMultiple : boolean }) => {
     const inputRef = useRef<HTMLInputElement | null>(null);
 
-    const { setFile, file } = useFileStore();
-    const handleUploadChange = () => {
-        const input = inputRef.current?.files?.[0];
-        if (!input) return;
+    const { setFiles, files } = useFileStore();
 
-        setFile(input);
+    const handleUploadChange = () => {
+        const inputFiles = inputRef.current?.files;
+        if (!inputFiles) return;
+
+        const filesArray = Array.from(inputFiles);
+        setFiles(filesArray);
     };
     return (
         <motion.div
@@ -20,38 +28,26 @@ export const FileUploader = (props: { filetype: FileTypes }) => {
             onClick={() => inputRef.current?.click()}>
             <input
                 type='file'
-                accept={`${props.filetype}/*`}
+                accept={`${props.filetype}`}
                 className='hidden'
                 ref={inputRef}
+                multiple={props.isMultiple}
                 onChange={handleUploadChange}
             />
             <div className='bg-foreground-light/50 p-3 rounded-md group-hover:text-white group-hover:shadow-[5px_5px_2px_0px_#a0aec0] transition-all ease-out duration-200'>
-                <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    fill='none'
-                    viewBox='0 0 24 24'
-                    strokeWidth={1.5}
-                    stroke='currentColor'
-                    className='size-4'>
-                    <path
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        d='M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5'
-                    />
-                </svg>
+                <Upload/>
             </div>
-            <h1 className='font-semibold'>Drop Your {props.filetype} here</h1>
+            <h1 className='font-semibold'>
+                Drop Your {fileTypeLable[props.filetype]} here
+            </h1>
             <p className='text-foreground-light text-xs'>
                 select files from your device
             </p>
 
             <Button
-                // onClick={() => inputRef.current?.click()}
                 variants={"outline"}
                 className='group-hover:bg-foreground-light/20 z-10'>
-                {
-                    file ? "Change File" : "Choose File"
-                } 
+                {files?.length !== 0 ? "Change Files" : "Choose Files"}
             </Button>
 
             <p className='text-xs text-foreground-light'>

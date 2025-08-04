@@ -1,0 +1,79 @@
+import { FileTypes } from "@/lib/store/file.store";
+
+export type FeatureConfigType = {
+    id: string;
+    heading: string;
+    desc: string;
+    isMultiple : boolean,
+    fileType: FileTypes;
+    processFiles: () => void;
+};
+
+export type ComponentType = "imageToPdf" | "pdfToImages" | "resizeImages" | "convertImageFormat" | "addSignature" | "addText" | "watermarkPdf" | "pdfToWord"
+
+export const ConfigObject: Record<ComponentType, FeatureConfigType> = {
+    imageToPdf: {
+        id: "imageToPdf",
+        isMultiple : true,
+        heading: "Convert Images to PDF",
+        desc: "Combine multiple images into a single PDF document with customizable layout and quality.",
+        fileType: "image/*",
+        processFiles: () => alert("Processing images into PDF..."),
+    },
+    pdfToImages: {
+        id: "pdfToImages",
+        isMultiple : false,
+        heading: "PDF to Images",
+        desc: "Extract pages from PDF files as high-quality images in various formats.",
+        fileType: "application/pdf",
+        processFiles: () => alert("Extracting images from PDF..."),
+    },
+    resizeImages: {
+        isMultiple : false,
+        id: "resizeImages",
+        heading: "Resize Images",
+        desc: "Resize images to specific dimensions while maintaining quality and aspect ratio.",
+        fileType: "image/*",
+        processFiles: () => alert("Resizing images..."),
+    },
+    convertImageFormat: {
+        isMultiple : false,
+        id: "convertImageFormat",
+        heading: "Convert Image Format",
+        desc: "Convert between different image formats like PNG, JPEG, WEBP with quality control.",
+        fileType: "image/*",
+        processFiles: () => alert("Converting image formats..."),
+    },
+    addSignature: {
+        isMultiple : false,
+        id: "addSignature",
+        heading: "Add Signature to PDF",
+        desc: "Upload and place your signature on any PDF document perfect for contracts or forms.",
+        fileType: "application/pdf",
+        processFiles: () => alert("Adding signature..."),
+    },
+    addText: {
+        isMultiple : false,
+        id: "addText",
+        heading: "Add Text to PDF",
+        desc: "Insert text into any page of a PDF useful for filling forms or adding labels.",
+        fileType: "application/pdf",
+        processFiles: () => alert("Adding text to PDF..."),
+    },
+    watermarkPdf: {
+        isMultiple : false,
+        id: "watermarkPdf",
+        heading: "Watermark PDF",
+        desc: "Add text or image watermarks to protect your documents.",
+        fileType: "application/pdf",
+        processFiles: () => alert("Watermarking PDF..."),
+    },
+    pdfToWord: {
+        isMultiple : false,
+        id: "pdfToWord",
+        heading: "PDF to Word",
+        desc: "Convert PDF documents into editable Word (.docx) files using high-accuracy conversion.",
+        fileType: "application/pdf",
+        processFiles: () => alert("Converting PDF to Word..."),
+    },
+};
