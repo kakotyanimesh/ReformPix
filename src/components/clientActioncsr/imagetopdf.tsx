@@ -15,11 +15,14 @@ export const ImageToPdfClientComponent = () => {
         }
         try {
             const res = await convertPdf({files : imagefiles})
+            
 
             if(!res.success){
                 throw new Error(res.message)
             }
-            const url = new Blob([res.fileByte], {type : "application/pdf"})
+            // const fileBuffer = res.fileByte.buffer.slice(res.fileByte.byteOffset, res.fileByte.byteOffset + res.fileByte.byteLength)  
+            const unit8Array = new Uint8Array(res.fileByte)
+            const url = new Blob([unit8Array as BlobPart], {type : "application/pdf"})
 
             const a = document.createElement("a")
             a.href = URL.createObjectURL(url)
