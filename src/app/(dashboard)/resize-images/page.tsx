@@ -8,7 +8,7 @@ export default function ResizeImage() {
     return (
         <div className="space-y-10">
             <FeatureHomeDiv heading={heading} desc={desc}/>
-            <WrapperAction config={ConfigObject.resizeImages}/>
+            <WrapperAction config={ConfigObject.resizeImages} handleClick={() => alert("we are cooking it")} />
         </div>
     )
 }

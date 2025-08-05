@@ -22,6 +22,9 @@ export const Features = () => {
                     <p className='md:text-sm text-xs text-foreground-light text-wrap'>
                         {f.desc}
                     </p>
+                    <h1 className='text-xs  transition-all ease-out duration-300 group-hover:text-shadow-2xs group-hover:text-shadow-foreground-light text-foreground-light group-hover:opacity-100 opacity-0'>
+                        Get Started →
+                    </h1>
                 </Link>
             ))}
         </div>

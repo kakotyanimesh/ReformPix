@@ -1,7 +1,6 @@
-"use client";
+import { PdfToImageComponent } from "@/components/clientActioncsr/pdftoImage";
 import { FeatureHomeDiv } from "@/components/ui/featureHomediv";
-import { WrapperAction } from "@/components/ui/wrapperAction";
-import { ConfigObject } from "@/lib/config/feature.config";
+
 
 export default function PdfToImage() {
     return (
@@ -10,7 +9,7 @@ export default function PdfToImage() {
                 heading='Convert PDF to Images'
                 desc="Upload a PDF and we'll extract each page as a separate image"
             />
-            <WrapperAction config={ConfigObject.pdfToImages} />
+            <PdfToImageComponent/>
         </div>
     );
 }

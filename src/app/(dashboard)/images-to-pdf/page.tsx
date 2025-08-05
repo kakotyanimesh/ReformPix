@@ -1,16 +1,17 @@
-"use client"
 
-import { ImageToPdfClient } from "@/components/imagetopdf";
+import { ImageToPdfClientComponent } from "@/components/clientActioncsr/imagetopdf";
 import { FeatureHomeDiv } from "@/components/ui/featureHomediv";
+import { ConfigObject } from "@/lib/config/feature.config";
 
-export default function ImageToPdf() {
+export default function ImageToPdfPage() {
+    const { heading, desc } = ConfigObject.imageToPdf
     return (
         <div className='space-y-10'>
             <FeatureHomeDiv
-                heading='Convert Images to PDF'
-                desc="Upload your images and we'll combine them into a single PDF document"
+                heading={heading}
+                desc={desc}
             />
-            <ImageToPdfClient />
+            <ImageToPdfClientComponent />
         </div>
     );
 }

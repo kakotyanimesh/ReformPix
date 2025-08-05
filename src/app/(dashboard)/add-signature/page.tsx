@@ -1,6 +1,5 @@
-"use client"
+import { AddSignatureComponent } from "@/components/clientActioncsr/signaturepdf";
 import { FeatureHomeDiv } from "@/components/ui/featureHomediv";
-import { WrapperAction } from "@/components/ui/wrapperAction";
 import { ConfigObject } from "@/lib/config/feature.config";
 
 export default function AddSignature() {
@@ -9,7 +8,7 @@ export default function AddSignature() {
         <div className="space-y-10">
 
             <FeatureHomeDiv heading={heading} desc={desc}/>
-            <WrapperAction config={ConfigObject.addSignature}/>
+            <AddSignatureComponent/>
         </div>
     )
 }

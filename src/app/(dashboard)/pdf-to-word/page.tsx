@@ -10,7 +10,7 @@ export default function PdfToWord() {
         <div className="space-y-10">
 
             <FeatureHomeDiv heading={heading} desc={desc}/>
-            <WrapperAction config={ConfigObject.pdfToWord}/>
+            <WrapperAction config={ConfigObject.pdfToWord} handleClick={() => alert("we are cooking it")} />
         </div>
     )
 }

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useFileStore } from "@/lib/store/file.store";
 import React, { HTMLAttributes } from "react";
 import { FileUploader } from "./fileUploader";
@@ -10,14 +10,14 @@ import type { FeatureConfigType } from "@/lib/config/feature.config";
 
 type WrapperProps = HTMLAttributes<HTMLDivElement> & {
     config: FeatureConfigType;
+    handleClick: () => void;
 };
 
 export const WrapperAction = React.forwardRef<HTMLDivElement, WrapperProps>(
-    ({ className, config, ...props }, ref) => {
-        const { files } = useFileStore();
+    ({ className, config, handleClick, ...props }, ref) => {
+        const { imagefiles, pdfFiles } = useFileStore();
 
         // console.log(config.desc);
-        
 
         return (
             <div
@@ -27,14 +27,17 @@ export const WrapperAction = React.forwardRef<HTMLDivElement, WrapperProps>(
                 )}
                 ref={ref}
                 {...props}>
-                <FileUploader isMultiple={config.isMultiple} filetype={config.fileType} />
+                <FileUploader
+                    isMultiple={config.isMultiple}
+                    filetype={config.fileType}
+                />
                 <DisplayFiles fileType={config.fileType} />
-                {files?.length !== 0 && (
+                {(imagefiles?.length !== 0 || pdfFiles?.length !== 0) && (
                     <Button
-                        onClick={config.processFiles}
+                        onClick={handleClick}
                         variants={"primary"}
                         sizes={"primary"}
-                        className='flex flex-row items-center justify-center gap-2 w-42'>
+                        className='flex flex-row items-center justify-center gap-2'>
                         <DownloadIcon />
                         {config.heading}
                     </Button>

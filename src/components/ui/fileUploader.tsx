@@ -13,18 +13,25 @@ const fileTypeLable: Record<FileTypes, string> = {
 export const FileUploader = (props: { filetype: FileTypes, isMultiple : boolean }) => {
     const inputRef = useRef<HTMLInputElement | null>(null);
 
-    const { setFiles, files } = useFileStore();
+    const { setImageFiles, setpdfFiles, pdfFiles, imagefiles } = useFileStore();
 
     const handleUploadChange = () => {
         const inputFiles = inputRef.current?.files;
         if (!inputFiles) return;
 
         const filesArray = Array.from(inputFiles);
-        setFiles(filesArray);
+        if(props.filetype === "application/pdf"){
+            setpdfFiles(filesArray)
+        } else if(props.filetype === "image/*"){
+            setImageFiles(filesArray)
+        } else {
+            console.log("nothing we can't do here");
+            
+        }
     };
     return (
         <motion.div
-            className='w-full border border-dashed  border-foreground-light/30 h-62 flex flex-col justify-center items-center rounded-md space-y-3 group'
+            className='w-full border border-dashed  border-foreground-light h-62 flex flex-col justify-center items-center rounded-md space-y-3 group'
             onClick={() => inputRef.current?.click()}>
             <input
                 type='file'
@@ -47,7 +54,7 @@ export const FileUploader = (props: { filetype: FileTypes, isMultiple : boolean 
             <Button
                 variants={"outline"}
                 className='group-hover:bg-foreground-light/20 z-10'>
-                {files?.length !== 0 ? "Change Files" : "Choose Files"}
+                {(imagefiles?.length !== 0 || !pdfFiles?.length) ? "Change Files" : "Choose Files"}
             </Button>
 
             <p className='text-xs text-foreground-light'>

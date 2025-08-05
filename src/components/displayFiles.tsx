@@ -3,40 +3,72 @@
 import { FileTypes, useFileStore } from "@/lib/store/file.store";
 import Image from "next/image";
 import { PdfViewer } from "./ui/pdfViewer";
+import React, { HTMLAttributes } from "react";
+import { cn } from "@/lib/cn";
 
-export const DisplayFiles = ({ fileType }: { fileType: FileTypes }) => {
-    const { files } = useFileStore();
+type DisplayFilesProps = HTMLAttributes<HTMLDivElement> & {
+    fileType: FileTypes;
+};
 
-    return (
-        <div className='space-x-3 space-y-2 grid grid-cols-3'>
-            {files?.map((file, key) =>
-                (() => {
+export const DisplayFiles = React.forwardRef<HTMLDivElement, DisplayFilesProps>(
+    ({ fileType, className, ...props }, ref) => {
+        const { imagefiles, pdfFiles } = useFileStore();
+
+        return (
+            <>
+                {(() => {
                     switch (fileType) {
                         case "image/*":
                             return (
-                                <div key={key} className='overflow-hidden'>
-                                    <Image
-                                        key={key}
-                                        src={URL.createObjectURL(file)}
-                                        width={300}
-                                        height={300}
-                                        alt='image'
-                                        className='size-42 hover:scale-105 transition-all ease-out'
-                                    />
+                                <div
+                                    className={cn(
+                                        "space-x-1 space-y-2 grid md:grid-cols-3 grid-cols-1",
+                                        className
+                                    )}
+                                    {...props}
+                                    ref={ref}>
+                                    {imagefiles?.map((img, key) => (
+                                        <div
+                                            key={key}
+                                            className='overflow-hidden'>
+                                            <Image
+                                                key={key}
+                                                draggable={false}
+                                                src={URL.createObjectURL(img)}
+                                                width={300}
+                                                height={300}
+                                                alt='image'
+                                                className='size-42'
+                                            />
+                                        </div>
+                                    ))}
                                 </div>
                             );
+
                         case "application/pdf":
                             return (
-                                <PdfViewer
-                                    key={key}
-                                    src={URL.createObjectURL(file)}
-                                />
+                                <div
+                                    className={cn(
+                                        "space-x-3 space-y-2 grid md:grid-cols-3 grid-cols-1",
+                                        className
+                                    )}
+                                    {...props}
+                                    ref={ref}>
+                                    {pdfFiles?.map((pdf, key) => (
+                                        <PdfViewer
+                                            key={key}
+                                            src={URL.createObjectURL(pdf)}
+                                        />
+                                    ))}
+                                </div>
                             );
                         default:
                             break;
                     }
-                })()
-            )}
-        </div>
-    );
-};
+                })()}
+            </>
+        );
+    }
+);
+
+DisplayFiles.displayName = "displaydiv";

@@ -8,7 +8,7 @@ export default function Watermark() {
     return (
         <div className='space-y-10'>
             <FeatureHomeDiv heading={heading} desc={desc} />
-            <WrapperAction config={ConfigObject.watermarkPdf} />
+            <WrapperAction config={ConfigObject.watermarkPdf} handleClick={() => alert("we are cooking it")} />
         </div>
     );
 }
