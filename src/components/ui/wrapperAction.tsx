@@ -22,17 +22,18 @@ export const WrapperAction = React.forwardRef<HTMLDivElement, WrapperProps>(
         return (
             <div
                 className={cn(
-                    "space-y-10 flex flex-col justify-center items-center",
+                    "space-y-5 flex flex-col justify-center items-center",
                     className
                 )}
                 ref={ref}
                 {...props}>
                 <FileUploader
+                    className="w-full"
                     isMultiple={config.isMultiple}
                     filetype={config.fileType}
                 />
-                <DisplayFiles fileType={config.fileType} />
-                {(imagefiles?.length !== 0 || pdfFiles?.length !== 0) && (
+                <DisplayFiles fileType={config.fileType} isMultiple={config.isMultiple}/>
+                {((imagefiles?.length ?? 0) > 0 || (pdfFiles?.length ?? 0) > 0) && (
                     <Button
                         onClick={handleClick}
                         variants={"primary"}

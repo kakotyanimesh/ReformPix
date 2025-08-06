@@ -1,16 +1,19 @@
 "use client";
-import { motion } from "motion/react";
+import { HTMLMotionProps, motion } from "motion/react";
 import { Button } from "./button";
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { FileTypes, useFileStore } from "@/lib/store/file.store";
 import { Upload } from "./icons/upload";
+import { cn } from "@/lib/cn";
 
 const fileTypeLable: Record<FileTypes, string> = {
     "application/pdf": "PDF",
     "image/*": "Image",
 };
 
-export const FileUploader = (props: { filetype: FileTypes, isMultiple : boolean }) => {
+type FileUploderProps = HTMLMotionProps<"div"> & {filetype : FileTypes, isMultiple : boolean}
+
+export const FileUploader = React.forwardRef<HTMLDivElement, FileUploderProps>(({ className, filetype, isMultiple, ...props}, ref) => {
     const inputRef = useRef<HTMLInputElement | null>(null);
 
     const { setImageFiles, setpdfFiles, pdfFiles, imagefiles } = useFileStore();
@@ -20,32 +23,34 @@ export const FileUploader = (props: { filetype: FileTypes, isMultiple : boolean 
         if (!inputFiles) return;
 
         const filesArray = Array.from(inputFiles);
-        if(props.filetype === "application/pdf"){
+        if (filetype === "application/pdf") {
             setpdfFiles(filesArray)
-        } else if(props.filetype === "image/*"){
+        } else if (filetype === "image/*") {
             setImageFiles(filesArray)
         } else {
             console.log("nothing we can't do here");
-            
+
         }
     };
     return (
         <motion.div
-            className='w-full border border-dashed  border-foreground-light h-62 flex flex-col justify-center items-center rounded-md space-y-3 group'
+            className={cn("w-fit border border-dashed  border-foreground-light h-62 flex flex-col justify-center items-center rounded-md space-y-3 group", className)}
+            {...props}
+            ref={ref}
             onClick={() => inputRef.current?.click()}>
             <input
                 type='file'
-                accept={`${props.filetype}`}
+                accept={`${filetype}`}
                 className='hidden'
                 ref={inputRef}
-                multiple={props.isMultiple}
+                multiple={isMultiple}
                 onChange={handleUploadChange}
             />
             <div className='bg-foreground-light/50 p-3 rounded-md group-hover:text-white group-hover:shadow-[5px_5px_2px_0px_#a0aec0] transition-all ease-out duration-200'>
-                <Upload/>
+                <Upload />
             </div>
             <h1 className='font-semibold'>
-                Drop Your {fileTypeLable[props.filetype]} here
+                Drop Your {fileTypeLable[filetype]} here
             </h1>
             <p className='text-foreground-light text-xs'>
                 select files from your device
@@ -54,7 +59,7 @@ export const FileUploader = (props: { filetype: FileTypes, isMultiple : boolean 
             <Button
                 variants={"outline"}
                 className='group-hover:bg-foreground-light/20 z-10'>
-                {(imagefiles?.length !== 0 || !pdfFiles?.length) ? "Change Files" : "Choose Files"}
+                {(imagefiles?.length !== 0 || !pdfFiles?.length) ? "Choose Files" : "Change Files" }
             </Button>
 
             <p className='text-xs text-foreground-light'>
@@ -62,4 +67,7 @@ export const FileUploader = (props: { filetype: FileTypes, isMultiple : boolean 
             </p>
         </motion.div>
     );
-};
+})
+
+
+FileUploader.displayName = "fileUploder"

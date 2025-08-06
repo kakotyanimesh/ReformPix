@@ -10,7 +10,8 @@ export const ButtonVariants = cva(
             variants: {
                 primary: "bg-foreground text-background hover:bg-foreground/80",
                 secondary: "text-foreground-light hover:bg-foreground-light/20",
-                outline : "border border-foreground-light/40 hover:bg-foreground-light/20"
+                outline : "border border-foreground-light/40 hover:bg-foreground-light/20",
+                transparent: "hover:bg-foreground-light/10"
             },
             sizes : {
                 "default": "px-3 py-2",

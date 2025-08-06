@@ -13,7 +13,7 @@ export const Features = () => {
                 <Link
                     key={key}
                     href={f.src}
-                    className='shadow-primary md:px-5 md:h-62 h-52 px-5 w-62 xl:w-auto rounded-md flex flex-col justify-center items-center text-center group gap-4 hover:shadow-secondary transition-all ease-out duration-200'>
+                    className='shadow-primary md:px-5 md:h-62 h-52 px-5 w-70 xl:w-auto rounded-md flex flex-col justify-center items-center text-center group gap-4 hover:shadow-secondary transition-all ease-out duration-200'>
                     {/* <Card key={key}> */}
                     <div className='bg-foreground-light/30 rounded-md p-2 group-hover:bg-foreground-light transition-all ease-linear duration-300'>
                         {f.icon}
@@ -44,10 +44,10 @@ const FeatureList: {
         src: "/images-to-pdf",
     },
     {
-        featureName: "PDF to Images",
+        featureName: "Remove Background",
         icon: <BsFillFileEarmarkImageFill size={20} />,
-        desc: "Extract pages from PDF files as high-quality images in various formats.",
-        src: "/pdf-to-images",
+        desc: "Remove the background from your image with security",
+        src: "/remove-bg",
     },
     {
         featureName: "Resize Images",

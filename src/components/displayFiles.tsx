@@ -1,17 +1,18 @@
 "use client";
 
 import { FileTypes, useFileStore } from "@/lib/store/file.store";
-import Image from "next/image";
 import { PdfViewer } from "./ui/pdfViewer";
 import React, { HTMLAttributes } from "react";
 import { cn } from "@/lib/cn";
+import { ImageViewer } from "./ui/imagevViewer";
 
 type DisplayFilesProps = HTMLAttributes<HTMLDivElement> & {
     fileType: FileTypes;
+    isMultiple : boolean
 };
 
 export const DisplayFiles = React.forwardRef<HTMLDivElement, DisplayFilesProps>(
-    ({ fileType, className, ...props }, ref) => {
+    ({ fileType, className, isMultiple, ...props }, ref) => {
         const { imagefiles, pdfFiles } = useFileStore();
 
         return (
@@ -22,25 +23,14 @@ export const DisplayFiles = React.forwardRef<HTMLDivElement, DisplayFilesProps>(
                             return (
                                 <div
                                     className={cn(
-                                        "space-x-1 space-y-2 grid md:grid-cols-3 grid-cols-1",
+                                        "space-x-1 space-y-2 grid ",
+                                        isMultiple ? "md:grid-cols-3 grid-cols-2" : "grid-cols-1",
                                         className
                                     )}
                                     {...props}
                                     ref={ref}>
                                     {imagefiles?.map((img, key) => (
-                                        <div
-                                            key={key}
-                                            className='overflow-hidden'>
-                                            <Image
-                                                key={key}
-                                                draggable={false}
-                                                src={URL.createObjectURL(img)}
-                                                width={300}
-                                                height={300}
-                                                alt='image'
-                                                className='size-42'
-                                            />
-                                        </div>
+                                        <ImageViewer file={img} index={key} key={key}/>
                                     ))}
                                 </div>
                             );
@@ -49,15 +39,16 @@ export const DisplayFiles = React.forwardRef<HTMLDivElement, DisplayFilesProps>(
                             return (
                                 <div
                                     className={cn(
-                                        "space-x-3 space-y-2 grid md:grid-cols-3 grid-cols-1",
+                                        "w-full ",
                                         className
                                     )}
                                     {...props}
                                     ref={ref}>
                                     {pdfFiles?.map((pdf, key) => (
                                         <PdfViewer
+                                            index={key}
                                             key={key}
-                                            src={URL.createObjectURL(pdf)}
+                                            file={pdf}
                                         />
                                     ))}
                                 </div>

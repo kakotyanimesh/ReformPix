@@ -57,6 +57,7 @@ export const convertPdf = async ({
 
     // saving pdf
     const arryBytes = await blanckPdf.save();
+    // the arrayBytes is unit8arrya which we will convert to pdf with blob 
 
     return {
         success: true,

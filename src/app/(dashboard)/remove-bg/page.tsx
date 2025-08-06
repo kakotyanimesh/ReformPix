@@ -1,4 +1,4 @@
-import { PdfToImageComponent } from "@/components/clientActioncsr/pdftoImage";
+import { RemoveBgComponent } from "@/components/clientActioncsr/removebgComponent";
 import { FeatureHomeDiv } from "@/components/ui/featureHomediv";
 
 
@@ -9,7 +9,8 @@ export default function PdfToImage() {
                 heading='Convert PDF to Images'
                 desc="Upload a PDF and we'll extract each page as a separate image"
             />
-            <PdfToImageComponent/>
+            
+            <RemoveBgComponent/>
         </div>
     );
 }

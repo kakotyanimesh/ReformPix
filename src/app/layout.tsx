@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { plexMono, plexSans } from "@/lib/font.config";
+import { Navbar } from "@/components/navbar";
+import { Toaster } from "sonner";
 
 
 export const metadata: Metadata = {
@@ -18,7 +20,10 @@ export default function RootLayout({
       <body
         className={`antialiased`}
       >
+        <Navbar />
+
         {children}
+        <Toaster richColors position="top-right"/>
       </body>
     </html>
   );

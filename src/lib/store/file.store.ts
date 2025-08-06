@@ -18,10 +18,26 @@ export const useFileStore = create<FileStoreType>((set, get) => ({
     pdfFiles: [],
     setImageFiles: (f) => set({ imagefiles: f }),
     setpdfFiles: (f) => set({ pdfFiles: f }),
-    reset: () => set({ imagefiles: null, pdfFiles: null }),
+    reset: () => set({ imagefiles: [], pdfFiles: [] }),
     removeImageFile: (index) =>
         set({
             imagefiles: get().imagefiles?.filter((_, i) => i !== index),
         }),
     removePdfFile : (index) => set({pdfFiles : get().pdfFiles?.filter((_,i) => i !== index)})
 }));
+
+export type imageType = "PNG" | "JPEG" | "WebP" | "BMP" | "TIFF"  | undefined
+ 
+
+type imageStore = {
+    imagetype : imageType
+    setImageType : (n : imageType) => void
+}
+
+
+export const useImageStore = create<imageStore>((set) => ({
+    imagetype : undefined,
+    setImageType(n) {
+        set({imagetype : n})
+    },
+}))

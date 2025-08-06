@@ -8,7 +8,7 @@ export type FeatureConfigType = {
     fileType: FileTypes;
     // processFiles: () => void;
 };
-export type ComponentType = "imageToPdf" | "pdfToImages" | "resizeImages" | "convertImageFormat" | "addSignature" | "addText" | "watermarkPdf" | "pdfToWord"
+export type ComponentType = "imageToPdf" | "removeBg" | "resizeImages" | "convertImageFormat" | "addSignature" | "addText" | "watermarkPdf" | "pdfToWord"
 
 export const ConfigObject: Record<ComponentType, FeatureConfigType> = {
     imageToPdf: {
@@ -18,12 +18,12 @@ export const ConfigObject: Record<ComponentType, FeatureConfigType> = {
         desc: "Combine multiple images into a single PDF document with customizable layout and quality.",
         fileType: "image/*",
     },
-    pdfToImages: {
-        id: "pdfToImages",
+    removeBg: {
+        id: "removeBg",
         isMultiple: false,
-        heading: "PDF to Images",
-        desc: "Extract pages from PDF files as high-quality images in various formats.",
-        fileType: "application/pdf",
+        heading: "Remove Background",
+        desc: "Removed the background as high-quality images in various formats.",
+        fileType: "image/*",
     },
     resizeImages: {
         isMultiple: false,
