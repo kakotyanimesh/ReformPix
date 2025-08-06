@@ -21,6 +21,7 @@ export const removeBg = async ({
                 message: "No file Provided",
             };
         }
+        console.log("anime");
 
         const supportedTypes = ["image/png", "image/jpeg"];
 
@@ -32,18 +33,19 @@ export const removeBg = async ({
         }
 
         const removed = await removeBackground(file, {
-            device: "gpu",
+            device: "cpu",
             output: {
-                quality: 1,
+                quality: 0.7,
                 format: "image/png",
             },
         });
 
-        const fileName = file.name.replace(/\.\w+$/, "");
+        const originalName = file.name.replace(/\.\w+$/, "");
+        const newFileName = `${originalName}_no_bg.png`;
 
-        const removedFileWithMetaData = new File([removed], fileName, {
-            lastModified: Date.now(),
+        const removedFileWithMetaData = new File([removed], newFileName, {
             type: "image/png",
+            lastModified: Date.now(),
         });
 
         return {
@@ -51,14 +53,20 @@ export const removeBg = async ({
             file: removedFileWithMetaData,
             message: "Succesfully Removed bg",
         };
-
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-        // console.log(error);
+        // console.error("Background removal error:", error);
+
+        if (error instanceof Error) {
+            return {
+                success: false,
+                message: `Error: ${error.message}`,
+            };
+        }
 
         return {
             success: false,
-            message: "something went wrong",
+            message: "An unexpected error occurred during background removal",
         };
     }
 };
